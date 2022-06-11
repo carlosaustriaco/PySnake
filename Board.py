@@ -6,7 +6,7 @@ The class the represents the board of the game
 Creation: 11/06/2022 carlosaustriaco
 """
 class Board:
-    _name = 'Snake'
+    _name = 'Snak'
 
     def _PaintPosition(self, a_Surface, a_Pos):
         self._screen.blit(a_Surface, a_Pos)
