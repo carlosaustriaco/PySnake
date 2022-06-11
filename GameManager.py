@@ -3,6 +3,8 @@ from pygame.locals import *
 import random
 import GeneralConstants as gc
 from Board import Board
+from Apple import Apple
+from Snake import Snake
 
 def collision(pos1, pos2):
     return pos1 == pos2
@@ -10,8 +12,26 @@ def collision(pos1, pos2):
 def OffLimits(pos):
     return not ((0 <= pos[0] < gc.BOARD_WIDTH) and (0 <= pos[1] < gc.BOARD_HEIGHT))
 
+def ResetGame():
+    pygame.quit()
+    quit()
+
 def StartGame():
     board = Board()
+    apple = Apple()
+    snake = Snake()
+
+    while True:
+        pygame.time.Clock().tick(gc.TIME_DELAY)
+        board.ResetBoard()
+
+        for event in pygame.event.get():
+            if event.type == QUIT:
+                ResetGame()
+            elif event.type == KEYDOWN:
+                snake.UpdateSnakeDirection(event)
+
+
 
 pygame.init()
 screen = pygame.display.set_mode(gc.WINDOW_SIZE)
@@ -34,7 +54,7 @@ def RandomOnGrid():
 apple_pos = RandomOnGrid()
 
 while(True):
-    pygame.time.Clock().tick(15)
+    pygame.time.Clock().tick(gc.TIME_DELAY)
     screen.fill((0, 0 ,0))
     for event in pygame.event.get():
         if event.type == QUIT:

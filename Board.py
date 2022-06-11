@@ -26,3 +26,5 @@ class Board:
         for pos in a_lstSnakePosition:
             self._PaintPosition(a_SnakeSurface, pos)
     
+    def UpdatePainting():
+        pygame.display.update()
