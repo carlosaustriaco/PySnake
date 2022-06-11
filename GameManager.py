@@ -2,12 +2,16 @@ import pygame
 from pygame.locals import *
 import random
 import GeneralConstants as gc
+from Board import Board
 
 def collision(pos1, pos2):
     return pos1 == pos2
 
 def OffLimits(pos):
     return not ((0 <= pos[0] < gc.BOARD_WIDTH) and (0 <= pos[1] < gc.BOARD_HEIGHT))
+
+def StartGame():
+    board = Board()
 
 pygame.init()
 screen = pygame.display.set_mode(gc.WINDOW_SIZE)
