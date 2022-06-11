@@ -34,3 +34,16 @@ class Snake:
     def UpdateSnakeDirection(self, a_event):
         if a_event.key in [K_UP, K_DOWN, K_LEFT, K_RIGHT]:
                 self._direction = a_event.key
+
+    def GetSurface(self):
+        return self._snake_surface
+
+    def GetAllPositions(self):
+        return self._pos
+
+    def IsSnakeDead(self):
+        for i in range(1, len(self._pos)):
+            if self._pos[0] == self._pos[i]:
+                return True
+
+        return False
