@@ -7,12 +7,10 @@ def collision(pos1, pos2):
     return pos1 == pos2
 
 def OffLimits(pos):
-    return not ((0 <= pos[0] < WINDOW_SIZE[0]) and (0 <= pos[1] < WINDOW_SIZE[1]))
-
-WINDOW_SIZE = (600, 600)
+    return not ((0 <= pos[0] < gc.BOARD_WIDTH) and (0 <= pos[1] < gc.BOARD_HEIGHT))
 
 pygame.init()
-screen = pygame.display.set_mode(WINDOW_SIZE)
+screen = pygame.display.set_mode(gc.WINDOW_SIZE)
 pygame.display.set_caption("Snake")
 
 snake_pos = [(250, 50), (260, 50), (270, 50)]
@@ -24,8 +22,8 @@ apple_surface = pygame.Surface((gc.PIXEL_SIZE, gc.PIXEL_SIZE))
 apple_surface.fill((255, 0, 0))
 
 def RandomOnGrid():
-    x = random.randint(0, WINDOW_SIZE[0])
-    y = random.randint(0, WINDOW_SIZE[1])
+    x = random.randint(0, gc.BOARD_WIDTH)
+    y = random.randint(0, gc.BOARD_HEIGHT)
 
     return x // gc.PIXEL_SIZE * gc.PIXEL_SIZE, y // gc.PIXEL_SIZE * gc.PIXEL_SIZE
 
