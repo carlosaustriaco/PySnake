@@ -1,6 +1,7 @@
 import pygame
 from pygame.locals import *
 import random
+import GeneralConstants as gc
 
 def collision(pos1, pos2):
     return pos1 == pos2
@@ -9,24 +10,24 @@ def OffLimits(pos):
     return not ((0 <= pos[0] < WINDOW_SIZE[0]) and (0 <= pos[1] < WINDOW_SIZE[1]))
 
 WINDOW_SIZE = (600, 600)
-PIXEL_SIZE = 10
+
 pygame.init()
 screen = pygame.display.set_mode(WINDOW_SIZE)
 pygame.display.set_caption("Snake")
 
 snake_pos = [(250, 50), (260, 50), (270, 50)]
-snake_surface = pygame.Surface((PIXEL_SIZE, PIXEL_SIZE))
+snake_surface = pygame.Surface((gc.PIXEL_SIZE, gc.PIXEL_SIZE))
 snake_surface.fill((255, 255, 255))
 snake_direction = K_LEFT
 
-apple_surface = pygame.Surface((PIXEL_SIZE, PIXEL_SIZE))
+apple_surface = pygame.Surface((gc.PIXEL_SIZE, gc.PIXEL_SIZE))
 apple_surface.fill((255, 0, 0))
 
 def RandomOnGrid():
     x = random.randint(0, WINDOW_SIZE[0])
     y = random.randint(0, WINDOW_SIZE[1])
 
-    return x // PIXEL_SIZE * PIXEL_SIZE, y // PIXEL_SIZE * PIXEL_SIZE
+    return x // gc.PIXEL_SIZE * gc.PIXEL_SIZE, y // gc.PIXEL_SIZE * gc.PIXEL_SIZE
 
 apple_pos = RandomOnGrid()
 
@@ -61,12 +62,12 @@ while(True):
         quit()
 
     if snake_direction == K_UP:
-        snake_pos[0] = (snake_pos[0][0], snake_pos[0][1] - PIXEL_SIZE)
+        snake_pos[0] = (snake_pos[0][0], snake_pos[0][1] - gc.PIXEL_SIZE)
     elif snake_direction == K_LEFT:
         snake_pos[0] = (snake_pos[0][0] - 10, snake_pos[0][1])
     elif snake_direction == K_RIGHT:
         snake_pos[0] = (snake_pos[0][0] + 10, snake_pos[0][1])
     if snake_direction == K_DOWN:
-        snake_pos[0] = (snake_pos[0][0], snake_pos[0][1] + PIXEL_SIZE)
+        snake_pos[0] = (snake_pos[0][0], snake_pos[0][1] + gc.PIXEL_SIZE)
 
     pygame.display.update()
